@@ -18,3 +18,4 @@ def verificaParanteses(s):
 s = input()
 balanceado = verificaParanteses(s)
 print(balanceado)
+

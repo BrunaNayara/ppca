@@ -1,3 +1,24 @@
+class Stack():
+    s = 0
+    items = []
+
+    def push(self, item):
+        self.items.append(item)
+        self.s += 1
+        return self.items
+
+    def pop(self):
+        i = self.items.pop()
+        self.s -= 1
+        return i
+
+    def size(self):
+        return self.s
+
+    def isEmpty(self):
+        return self.s == 0
+
+
 def operacao(a, b, op):
     if op == "+":
         return a + b
@@ -6,25 +27,21 @@ def operacao(a, b, op):
     elif op == "*":
         return a * b
 
-ops = "+-*"
+
 exp = input().split()
-pilha = []
 
-while(len(exp)):
-    print("exp")
-    print(exp)
-    j = exp[0]
-    while(j not in ops):
-        print("pilha")
-        print(pilha)
-        pilha.append(j)
-        j = exp.pop(0)
+operadores = "+-*"
+stack = Stack()
+
+for c in exp:
+
+    if c not in operadores:
+        stack.push(c)
     else:
-        a = int(pilha.pop())
-        print("aaaaa")
-        print(a)
-        b = int(pilha.pop())
-        c = operacao(a, b, j)
-        pilha.append(c)
+        a = int(stack.pop())
+        b = int(stack.pop())
+        op = c
+        resultado = operacao(a, b, op)
+        stack.push(resultado)
 
-        print(c)
+print(stack.pop())
